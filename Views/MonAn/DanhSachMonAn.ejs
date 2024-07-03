@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../layout/meta'); -%>
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+    <%- include('../layout/header'); -%>
+    <!--    @include('admin.layout.header')-->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+            <%- include('../layout/menu'); -%>
+            <!--            @include('admin.layout.menu')-->
+
+
+            <div class="container-fluid">
+
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Danh sách món ăn</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" style="padding: 0 15px;">
+                            <div class="row">
+                                <%MonAn.forEach(function (item){%>
+<!--                                @foreach ($MonAn as $key => $item)-->
+                                <div class="col-3">
+                                    <div class="product" style="margin-bottom: 20px">
+                                        <div class="product-img">
+                                            <img src="/img/<%=item.Hinhanh%>" width="100%" height="276">
+                                            <div class="action">
+
+                                                <a href="/restaurant/admin/suamonan/<%=item.id%>" class="btn btn-xs btn-info" style="margin-bottom: 5px;"> Sửa</a>
+                                                <a href="/restaurant/admin/xoamonan/<%=item.id%>" class="btn btn-xs btn-danger"  onclick="return confirm('Bạn đồng ý xóa')"> Xóa</a>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="product-detail">
+                                            <div class="product-name"> <%=item.Ten_monan%> </div>
+                                            <b class="product-price"><%=item.Gia%>.VNĐ </b>
+<!--                                            <div>Danh mục: {{$item->danhmuc->Ten_danhmuc}}<%=item.Ten_danhmuc%></div>-->
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <%});%>
+                            <style>
+                                .product-img img{
+                                    width: 100%;
+                                }
+                                .product-detail{
+                                    text-align: center;
+                                    margin-top: 10px;
+                                }
+                                .product-name{
+                                    text-transform: uppercase;
+                                }
+                                .action{
+                                    position: absolute;
+                                    top: 5px;
+                                    display: flex;
+                                    flex-direction: column;
+                                    right: 5px;
+                                }
+                                .product-img{
+                                    position: relative;
+                                    overflow: hidden;
+                                    -moz-transition: all .5s ease;
+                                    -webkit-transition: all .5s ease;
+                                    transition: all .5s ease;
+                                }
+                                .product-img img{
+                                    -moz-transition: all .5s ease;
+                                    -webkit-transition: all .5s ease;
+                                    transition: all .5s ease;
+                                }
+                                .action a{
+                                    transform: scale(0);
+                                    -moz-transition: all .5s ease;
+                                    -webkit-transition: all .5s ease;
+                                    transition: all .5s ease;
+                                }
+                                .product:hover .action a{
+                                    transform: scale(1);
+                                }
+                                .product:hover .product-img img{
+                                    transform: scale(1.1);
+                                    filter: grayscale(60%);
+                                }
+                            </style>
+                        </div>
+
+                        <footer class="panel-footer" style="margin-top: 20px;">
+
+                            <div class="row">
+                                <div class="col-sm-7 text-center">
+
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <th>
+                                            </th>
+                                            <th>
+<!--                                                {{ $MonAn->links() }}-->
+                                            </th>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+                            </div>
+                        </footer>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        </div>
+    </div>
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="{{route('dangxuat')}}">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../layout/meta2'); -%>
+
+
+</body>
+
+</html>
